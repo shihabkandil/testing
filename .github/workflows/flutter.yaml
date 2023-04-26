@@ -15,8 +15,13 @@ jobs:
           key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: ${{ runner.os }}-flutter-
 
-      - name: Set up Flutter
-        run: flutter config --no-analytics && flutter precache
+      - name: Install Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+      
+      - name: Add Flutter to PATH
+        run: echo "$PATH":"$HOME/flutter/bin" >> $GITHUB_ENV    
 
 
       - name: Install dependencies
