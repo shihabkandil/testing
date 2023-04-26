@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-import 'models/favorites.dart';
-import 'screens/favorites_screen.dart';
-import 'screens/home.dart';
+import 'package:testing_app/screens/favorites_screen.dart';
+import 'package:testing_app/screens/home.dart';
+import 'package:testing_app/testing_app.dart';
 
 void main() {
-  runApp(const TestingApp());
+  print(DateTime.now().millisecondsSinceEpoch);
+  runApp(TestingApp(
+    router: _router,
+  ));
 }
 
 final _router = GoRouter(
@@ -27,22 +29,3 @@ final _router = GoRouter(
     ),
   ],
 );
-
-class TestingApp extends StatelessWidget {
-  const TestingApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider<Favorites>(
-      create: (context) => Favorites(),
-      child: MaterialApp.router(
-        title: 'Testing Sample',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          useMaterial3: true,
-        ),
-        routerConfig: _router,
-      ),
-    );
-  }
-}

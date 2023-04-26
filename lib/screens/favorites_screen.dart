@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../models/favorites.dart';
 
-
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
 
