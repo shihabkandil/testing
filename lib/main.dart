@@ -5,7 +5,6 @@ import 'package:testing_app/screens/home.dart';
 import 'package:testing_app/testing_app.dart';
 
 void main() {
-  print(DateTime.now().millisecondsSinceEpoch);
   runApp(TestingApp(
     router: _router,
     
