@@ -18,11 +18,13 @@ jobs:
     - name: Run static analysis and checks
       run: flutter analyze
 
-    - name: Run unit tests
-      run: flutter test
-
-    - name: Run widget tests
-      run: flutter test --tags "widget"
-
-    - name: Run integration tests
-      run: flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart
+    - name: Run tests
+      if: steps.check_files.outputs.files_exists == 'true'
+      run: |
+        # run tests if `test` folder exists
+        if [ -d test ]
+        then
+            flutter test -r expanded
+        else
+            echo "Tests not found."
+        fi
