@@ -8,6 +8,7 @@ void main() {
   print(DateTime.now().millisecondsSinceEpoch);
   runApp(TestingApp(
     router: _router,
+    
   ));
 }
 
