@@ -7,12 +7,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
+        
+      - name: Cache Flutter
+        uses: actions/cache@v2
         with:
-          flutter-version: '3.7.10'
-          channel: 'stable'
+          path: ${{ env.HOME }}/.flutter
+          key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: ${{ runner.os }}-flutter-
+
+      - name: Set up Flutter
+        run: flutter config --no-analytics && flutter precache
+
 
       - name: Install dependencies
         run: flutter pub get
